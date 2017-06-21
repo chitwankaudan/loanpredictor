@@ -1,7 +1,7 @@
 import os
 import settings
 import datetime
-importa pandas as pd
+import pandas as pd
 
 SELECT = [
 "id",
