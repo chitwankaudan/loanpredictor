@@ -51,5 +51,9 @@ def concatenate():
   alldata = pd.concat(all_data, axis=0) #merge all dataframes
   alldata.to_csv(os.path.join(PROCESSED_DIR, "alldata.text"), sep = ",", header = SELECT, index = False)  #write data to alldata.txt
  
-
+# run concatenate only if assemble.py called from the command line
+if _name_ == "_main_" :
+  concatenate()
+  
+  
  
