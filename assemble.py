@@ -3,7 +3,7 @@ import settings
 import datetime
 import pandas as pd
 
-# list all revelant columns
+# lists all revelant columns
 SELECT = [
 "id",
 "loan_amnt",
@@ -35,23 +35,26 @@ def concatenate():
   files = os.listdir(settings.DATA_DIR)
   alldata = []
   
-  # keep the header of the first file
+  # keeps the header of the first file
   first = pd.read_csv(os.path.join(settings.DARA_DIR, files[0]), header = 1, index_col=False)
   first = first[SELECTED]
   alldata.append(first)
   
-  # drop the header in the rest of the files
+  # drops the header in the rest of the files
   files = files[1:]
   for f in files:
     data = pd.read_csv(os.path.join(settings.DATA_DIR, f), header = 1, index_col=False)
-    data = data[SELECT] # trim dataframe to only included "selected" columns
-    data.drop(0, inplace = True)  # drop header
+    data = data[SELECT] # trims dataframe to only included "selected" columns
+    data.drop(0, inplace = True)  # drops header
     alldata.append(data)
-    
-  alldata = pd.concat(all_data, axis=0) #merge all dataframes
+  
+  # concatenates all data into one file
+  alldata = pd.concat(all_data, axis=0) # merges all dataframes
+  alldata[id] = range(1, alldata.shape[0])  # adds a unique id
   alldata.to_csv(os.path.join(PROCESSED_DIR, "alldata.text"), sep = ",", header = SELECT, index = False)  #write data to alldata.txt
- 
-# run concatenate only if assemble.py called from the command line
+             
+    
+# runs concatenate only if assemble.py called from the command line
 if _name_ == "_main_" :
   concatenate()
   
