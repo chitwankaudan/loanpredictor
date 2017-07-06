@@ -62,6 +62,7 @@ def concatenate():
   # keeps the header of the first file
   first = pd.read_csv(os.path.join(settings.DATA_DIR, files[0]), header = 1, index_col=False, dtype = type_dict, na_values = [""])
   first = first[SELECT]
+  first.drop(first.tail(3).index) #trim comments out of df
   alldata.append(first)
   
   # drops the header in the rest of the files
@@ -69,7 +70,11 @@ def concatenate():
   for f in files:
     data = pd.read_csv(os.path.join(settings.DATA_DIR, f), header = 1, index_col=False)
     data = data[SELECT] # trims dataframe to only included "selected" columns
-    data.drop(0, inplace = True)  # drops header
+    data.drop(0, inplace = True) # drops header
+
+    data.drop(data.tail(3).index) #trim comments out of df
+    
+    data.drop(0, inplace = True)
     alldata.append(data)
   
   # concatenates all data into one file
