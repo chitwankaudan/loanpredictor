@@ -1,0 +1,10 @@
+id,loan_amnt,term,int_rate,installment,grade,sub_grade,emp_length,home_ownership,annual_inc,verification_status,issue_d,purpose,addr_state,dti,earliest_cr_line,open_acc,pub_rec,total_acc,initial_list_status,application_type
+,16000, 60 months,  9.75%,337.99,B,B3,10+ years,OWN,120000.0,Source Verified,Mar-2016,debt_consolidation,CT,13.68,Nov-1994,25.0,0.0,38.0,w,INDIVIDUAL
+,6000, 36 months,  7.39%,186.34,A,A4,3 years,MORTGAGE,72000.0,Source Verified,Mar-2016,debt_consolidation,FL,10.68,Oct-2008,12.0,0.0,18.0,w,INDIVIDUAL
+,5625, 36 months, 18.25%,204.07,D,D3,10+ years,MORTGAGE,53328.0,Verified,Mar-2016,home_improvement,OR,10.51,Mar-2005,7.0,0.0,14.0,f,INDIVIDUAL
+,6000, 36 months, 10.75%,195.73,B,B4,8 years,RENT,35000.0,Source Verified,Mar-2016,debt_consolidation,TX,20.58,May-2005,7.0,0.0,8.0,w,INDIVIDUAL
+,10000, 36 months,  8.39%,315.17,B,B1,< 1 year,RENT,48000.0,Source Verified,Mar-2016,debt_consolidation,VA,29.58,Mar-2012,13.0,1.0,17.0,w,INDIVIDUAL
+,17000, 36 months,  9.75%,546.55,B,B3,< 1 year,MORTGAGE,40000.0,Verified,Mar-2016,credit_card,NC,24.3,Aug-2006,4.0,0.0,8.0,w,INDIVIDUAL
+,15000, 36 months,  9.75%,482.25,B,B3,1 year,MORTGAGE,60000.0,Source Verified,Mar-2016,debt_consolidation,FL,5.73,May-2011,11.0,0.0,14.0,w,INDIVIDUAL
+,30000, 60 months, 12.99%,682.44,C,C2,9 years,RENT,70000.0,Source Verified,Mar-2016,debt_consolidation,WI,19.44,Dec-1993,6.0,0.0,20.0,w,INDIVIDUAL
+,20400, 60 months, 13.67%,471.19,C,C3,8 years,MORTGAGE,44122.0,Not Verified,Mar-2016,debt_consolidation,WA,24.4,Nov-2003,9.0,0.0,25.0,w,INDIVIDUAL
