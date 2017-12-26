@@ -1,18 +1,15 @@
 import os
 import settings
-import datetime
 import pandas as pd
 import numpy as np
 
-# lists all revelant columns
+# select is a list of all columns relevant to our analysis
 SELECT = [
 "loan_amnt",
 "term",
 "int_rate",
 "installment",
-"grade",
 "sub_grade",
-"emp_title",
 "emp_length",
 "home_ownership",
 "annual_inc",
@@ -26,19 +23,20 @@ SELECT = [
 "open_acc",
 "pub_rec",
 "revol_util",
-"total_acc",
 "initial_list_status",
-"application_type"
+"application_type",
+"tot_cur_bal",
+"tot_hi_cred_lim",
 ]
 
+# dt is a dictionary that informs the pd.read_csv funciton what datatype each column is
+# explicitly stating the datatype is amore efficient way to load in our large datasets
 dt = {
 "loan_amnt": float,
 "term": object,
 "int_rate": object,
 "installment": float,
-"grade": object,
 "sub_grade": object,
-"emp_title": object,
 "emp_length": object,
 "home_ownership": object,
 "annual_inc": float,
@@ -52,42 +50,45 @@ dt = {
 "open_acc": float,
 "pub_rec": float,
 "revol_util": object,
-"total_acc": float,
 "initial_list_status": object,
-"application_type": object
+"application_type": object,
+"tot_cur_bal": float,
+"tot_hi_cred_lim": float,
 }
 
-
 def concatenate():
-  alldata = []
-  files = []
-  for item in os.listdir(settings.DATA_DIR):
-    if item.endswith(".csv"):
-        files.append(item)
-  
-  # keeps the header of the first file
-  first = pd.read_csv(os.path.join(settings.DATA_DIR, files[0]), header = 1, 
-    usecols = SELECT, dtype = dt, index_col=False, na_values = [''])
-  first.drop(first.tail(3).index, inplace = True) #delete comments at the end of the data file
+      """ Strings all the csv's with training data into one large csv called alltext.csv """
+      alldata = []
+      files = []
+      for item in os.listdir(settings.DATA_DIR):
+        if item.endswith(".csv"):
+            files.append(item)
+      
+      # keep the header of the first file
+      first = pd.read_csv(os.path.join(settings.DATA_DIR, files[0]), header = 1, 
+        usecols = SELECT, dtype = dt, index_col=False, na_values = [''])
+      first.drop(first.tail(3).index, inplace = True) #delete comments at the end of the data file
 
-  alldata.append(first)
-  
-  # drops the header in the rest of the files
-  files = files[1:]
-  for f in files:
-    data = pd.read_csv(os.path.join(settings.DATA_DIR, f), header = 1, 
-      usecols = SELECT, dtype = dt, index_col=False, na_values = [''])
-    data.drop(0, inplace = True) # drops header
+      alldata.append(first)
+      
+      # drop the header in the rest of the files
+      files = files[1:]
+      for f in files:
+        data = pd.read_csv(os.path.join(settings.DATA_DIR, f), header = 1, 
+          usecols = SELECT, dtype = dt, index_col=False, na_values = [''])
+        data.drop(0, inplace = True) # drops header
 
-    data.drop(data.tail(3).index, inplace = True) #trim comments out of df
-    
-    alldata.append(data)
-  
-  # concatenates all data into one file
-  alldata = pd.concat(alldata, axis=0) # merges all dataframes
-  # alldata[id] = range(1, (alldata.shape[0]-5)  # adds a unique id
-  alldata.to_csv(os.path.join(settings.PROCESSED_DIR, "alldata.csv"), sep = ",", header = SELECT, index = False)  #write data to alldata.txt         
-    
+        data.drop(data.tail(3).index, inplace = True) #trim comments out of df
+        
+        alldata.append(data)
+      
+      # concatenate all data into one file and resets index
+      alldata = pd.concat(alldata, axis=0).reset_index(drop=True)
+      
+      # Saving the pandas dataframe 
+      alldata.to_pickle('processed/assembled.pkl')
+      
+
 # runs concatenate only if assemble.py called from the command line
 if __name__ == "__main__" :
   concatenate()

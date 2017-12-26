@@ -1,5 +1,4 @@
 DATA_DIR = "data"
 PROCESSED_DIR = "processed"
-MINIMUM_DAYS = 365
-TARGET = "loan_status"
+MINIMUM_TRACKING_QUARTERS = 5
 CV_FOLDS = 3

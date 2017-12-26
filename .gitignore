@@ -102,5 +102,6 @@ ENV/
 
 # Data
 processed
+data
 
 .DS_Store
