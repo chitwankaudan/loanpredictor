@@ -24,7 +24,7 @@ SELECT = [
 "pub_rec",
 "revol_util",
 "initial_list_status",
-"application_type",
+"application_typet",
 "tot_cur_bal",
 "tot_hi_cred_lim",
 ]
