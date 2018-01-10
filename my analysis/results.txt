@@ -1,0 +1,3 @@
+Accuracy Score: 0.6467770212835519
+False Negatives: 0.3454641095095289
+False Positives: 0.39547903521136035

@@ -1,0 +1,9 @@
+name: loans
+
+dependencies:
+- python=3.6.1
+- pandas=0.20.1
+- scikit-learn=0.19.1
+- numpy=1.12.1
+- ipython=5.3.0
+- scipy=1.0.0

@@ -1,8 +1,0 @@
-name: loans
-
-dependencies:
-- pandas
-- scikit-learn
-- numpy
-- ipython
-- scipy
